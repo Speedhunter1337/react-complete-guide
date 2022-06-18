@@ -1,4 +1,5 @@
 import ExpenseItem from "./ExpenseItem";
+import Expenses from "./Expenses";
 
 const expenses = [
 	{
@@ -23,14 +24,12 @@ const expenses = [
 	},
 ];
 
-const App = props => {
-	const renderExpenses = expenses.map(expense => (
-		<ExpenseItem key={expense.id} expense={expense} />
-	));
-
+const App = (props) => {
 	return (
 		<div>
-			<div>{renderExpenses}</div>
+			<div>
+				<Expenses expenses={expenses} />
+			</div>
 		</div>
 	);
 };
