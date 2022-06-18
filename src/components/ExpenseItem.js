@@ -1,5 +1,6 @@
 import ExpenseDate from "./ExpenseDate";
 import "./ExpenseItem.css";
+import SomeComponent from "./SomeComponent.js";
 
 const ExpenseItem = ({ expense }) => {
   const { title, amount, date } = expense;
