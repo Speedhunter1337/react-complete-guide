@@ -1,4 +1,4 @@
-import Expenses from "./Expenses";
+import Expenses from "./Expenses/Expenses";
 
 const expenses = [
   {
@@ -23,12 +23,12 @@ const expenses = [
   },
 ];
 
-const App = (props) => {
+const App = () => {
   return (
     <div>
       <h2>Let's get started</h2>
       <div>
-        <Expenses expenses={expenses} />
+        <Expenses items={expenses} />
       </div>
     </div>
   );
