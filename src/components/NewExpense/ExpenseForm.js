@@ -1,46 +1,55 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = ({ onSaveExpenseData }) => {
+const ExpenseForm = ({ onIsEditingClick, onSaveExpenseData }) => {
 	const [enteredTitle, setEnteredTitle] = useState("");
 	const [enteredAmount, setEnteredAmount] = useState("");
 	const [enteredDate, setEnteredDate] = useState("");
+
 	// const [userInput, setUserInput] = useState({
 	// 	enteredTitle: "",
 	// 	enteredAmount: "",
 	// 	enteredDate: "",
 	// });
 
-	const titleChangeHandler = (e) => {
+	const cancelClickHandler = (event) => {
+		event.preventDefault();
+		setEnteredTitle("");
+		setEnteredAmount("");
+		setEnteredDate("");
+		onIsEditingClick(false);
+	};
+
+	const titleChangeHandler = (event) => {
 		// setUserInput((prevInput) => ({
 		// 	...prevInput,
 		// 	enteredTitle: e.target.value,
 		// }));
-		setEnteredTitle(e.target.value);
+		setEnteredTitle(event.target.value);
 	};
 
-	const amountChangeHandler = (e) => {
+	const amountChangeHandler = (event) => {
 		// setUserInput((prevInput) => ({
 		// 	...prevInput,
 		// 	enteredAmount: e.target.value,
 		// }));
-		setEnteredAmount(e.target.value);
+		setEnteredAmount(event.target.value);
 	};
 
-	const dateChangeHandler = (e) => {
+	const dateChangeHandler = (event) => {
 		// setUserInput((prevInput) => ({
 		// 	...prevInput,
 		// 	enteredDate: e.target.value,
 		// }));
-		setEnteredDate(e.target.value);
+		setEnteredDate(event.target.value);
 	};
 
-	const submitHandler = (e) => {
-		e.preventDefault();
+	const submitHandler = (event) => {
+		event.preventDefault();
 
 		const expenseData = {
 			title: enteredTitle,
-			amount: enteredAmount,
+			amount: +enteredAmount,
 			date: new Date(enteredDate),
 		};
 
@@ -48,6 +57,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 		setEnteredTitle("");
 		setEnteredAmount("");
 		setEnteredDate("");
+		onIsEditingClick(false);
 	};
 
 	return (
@@ -84,6 +94,9 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 				</div>
 			</div>
 			<div className="new-expense__actions">
+				<button onClick={cancelClickHandler} type="button">
+					Cancel
+				</button>
 				<button type="submit">Add Expense</button>
 			</div>
 		</form>
